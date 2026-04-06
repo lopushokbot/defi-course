@@ -1,6 +1,6 @@
 # DeFi Mastery Course - Static Website
 
-A polished, single-page static website for a comprehensive DeFi course with downloadable PDF guides and video walkthroughs.
+A premium, single-page static website for a comprehensive DeFi course with downloadable PDF guides and video walkthroughs. Light theme with an Apple-inspired aesthetic — clean whitespace, elegant typography, and restrained design.
 
 ## Quick Start
 
