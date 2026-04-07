@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join the Community | DeFi Course</title>
+  <meta name="description" content="You've completed the DeFi Course. Join our Telegram community to discuss strategies, ask questions, and stay ahead of the curve.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #fbfbfd;
+      --bg-alt: #f5f5f7;
+      --bg-card: #ffffff;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-hover: rgba(0, 0, 0, 0.14);
+      --text: #1d1d1f;
+      --text-secondary: #424245;
+      --text-muted: #86868b;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --accent-soft: rgba(0, 113, 227, 0.08);
+      --green: #28a745;
+      --green-soft: rgba(40, 167, 69, 0.08);
+      --tg: #26A5E4;
+      --tg-hover: #1e96d1;
+      --tg-soft: rgba(38, 165, 228, 0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      --font-heading: 'New York', 'New York Large', Georgia, 'Times New Roman', serif;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-heading); }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .container-wide {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(251,251,253,0.72);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container-wide {
+      display: flex; align-items: center; justify-content: space-between; height: 52px;
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.87rem; font-weight: 500; color: var(--accent);
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.7; }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* HERO */
+    .community-hero {
+      padding: 160px 0 40px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .community-hero .inner {
+      max-width: 640px;
+    }
+    .trophy {
+      font-size: 4rem;
+      margin-bottom: 24px;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .community-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .community-hero h1 .highlight {
+      background: linear-gradient(135deg, #26A5E4 0%, #0071e3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .community-hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    /* CTA */
+    .tg-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--tg);
+      padding: 18px 40px;
+      border-radius: 980px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(38, 165, 228, 0.3);
+    }
+    .tg-btn:hover {
+      background: var(--tg-hover);
+      transform: scale(1.03);
+      box-shadow: 0 6px 28px rgba(38, 165, 228, 0.4);
+    }
+    .tg-btn svg { width: 22px; height: 22px; }
+
+    .secondary-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .secondary-link:hover { opacity: 0.7; }
+
+    /* PERKS */
+    .perks {
+      padding: 40px 0 96px;
+    }
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .perk-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      transition: box-shadow 0.25s;
+    }
+    .perk-card:hover { box-shadow: var(--shadow-md); }
+    .perk-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .perk-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .perk-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0; text-align: center;
+      font-size: 0.78rem; color: var(--text-muted);
+    }
+
+    @media (max-width: 700px) {
+      .perks-grid { grid-template-columns: 1fr; }
+      .trophy { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container-wide">
+    <a href="../index.html" class="nav-back">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd"/></svg>
+      All Lessons
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="community-hero">
+  <div class="container">
+    <div class="inner">
+      <span class="trophy">&#x1f389;</span>
+      <h1>You made it.<br>Now <span class="highlight">join the conversation.</span></h1>
+      <p>You've completed 9 lessons on DeFi &mdash; from smart contracts to multi-chain yield strategies. The next step? Connect with fellow DeFi practitioners, share strategies, ask questions, and stay ahead of the curve.</p>
+
+      <a href="https://t.me/defistable" target="_blank" rel="noopener" class="tg-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+        Join DeFi Stable on Telegram
+      </a>
+
+      <br>
+      <a href="../index.html" class="secondary-link">&larr; Back to Course Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- PERKS -->
+<section class="perks">
+  <div class="container">
+    <div class="perks-grid">
+      <div class="perk-card">
+        <span class="perk-icon">&#x1f4ac;</span>
+        <h3>Live Discussions</h3>
+        <p>Talk strategies, share opportunities, and get real-time answers from the community.</p>
+      </div>
+      <div class="perk-card">
+        <span class="perk-icon">&#x1f4e2;</span>
+        <h3>Yield Alerts</h3>
+        <p>Be the first to know about new farming campaigns, protocol launches, and high-APY opportunities.</p>
+      </div>
+      <div class="perk-card">
+        <span class="perk-icon">&#x1f6e1;</span>
+        <h3>Security Updates</h3>
+        <p>Get warnings about scams, exploits, and phishing attempts before they reach you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container-wide">
+    &copy; 2025 DeFi Course. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

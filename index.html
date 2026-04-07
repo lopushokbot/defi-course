@@ -32,7 +32,10 @@
       --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
       --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
       --shadow-lg: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      --font-heading: 'New York', 'New York Large', Georgia, 'Times New Roman', serif;
     }
+
+    h1, h2, h3, h4 { font-family: var(--font-heading); }
 
     html { scroll-behavior: smooth; }
 
@@ -76,6 +79,11 @@
       color: var(--text);
     }
     .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
     nav a.cta-nav {
       font-size: 0.82rem;
       font-weight: 500;
@@ -84,6 +92,18 @@
       transition: opacity 0.2s;
     }
     nav a.cta-nav:hover { opacity: 0.72; }
+    nav a.cta-tg {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #26A5E4;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    nav a.cta-tg:hover { opacity: 0.72; }
+    nav a.cta-tg svg { width: 16px; height: 16px; }
 
     /* ---- HERO ---- */
     .hero {
@@ -227,9 +247,13 @@
       background: var(--bg-card);
       padding: 32px 24px;
       transition: background 0.2s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      display: block;
     }
     .topic-card:hover {
-      background: var(--bg-alt);
+      background: var(--accent-soft);
     }
     .topic-icon {
       font-size: 1.6rem;
@@ -265,10 +289,19 @@
       border-radius: var(--radius);
       padding: 24px 28px;
       transition: box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      cursor: pointer;
+      scroll-margin-top: 72px;
     }
     .lesson-card:hover {
       border-color: var(--border-hover);
       box-shadow: var(--shadow-md);
+    }
+    .lesson-card-link {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border-radius: var(--radius);
     }
     .lesson-num {
       font-family: 'JetBrains Mono', monospace;
@@ -318,10 +351,11 @@
     }
     .lesson-actions {
       display: flex;
+      flex-direction: column;
       gap: 8px;
       flex-shrink: 0;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      position: relative;
+      z-index: 1;
     }
     .btn-dl {
       display: inline-flex;
@@ -344,10 +378,10 @@
     .btn-pdf:hover { background: #ebebed; transform: translateY(-1px); }
     .btn-video {
       color: #fff;
-      background: var(--accent);
+      background: var(--green);
       border: 1px solid transparent;
     }
-    .btn-video:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-video:hover { background: #22943e; transform: translateY(-1px); }
 
     /* ---- WHO IS THIS FOR ---- */
     .audience-grid {
@@ -441,6 +475,7 @@
         border-radius: 12px;
       }
       .lesson-actions {
+        flex-direction: row;
         justify-content: flex-start;
       }
       .hero-stats { gap: 32px; }
@@ -460,7 +495,13 @@
 <nav>
   <div class="container">
     <div class="logo">DeFi<span>Course</span></div>
-    <a href="#lessons" class="cta-nav">Browse Lessons</a>
+    <div class="nav-links">
+      <a href="https://t.me/defistable" class="cta-tg" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+        Telegram
+      </a>
+      <a href="#lessons" class="cta-nav">Browse Lessons</a>
+    </div>
   </div>
 </nav>
 
@@ -472,7 +513,6 @@
     <p class="hero-sub">From smart-contract basics to multi-chain yield strategies. Download every lesson as a PDF guide or video walkthrough.</p>
     <div class="hero-actions">
       <a href="#lessons" class="btn-primary">
-        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
         Start Learning
       </a>
       <a href="#overview" class="btn-ghost">See what's inside</a>
@@ -494,46 +534,46 @@
     <h2 class="section-title">Nine lessons. Zero fluff.</h2>
     <p class="section-desc">Build a complete understanding of decentralised finance, from the smart-contract layer up to advanced cross-chain yield strategies.</p>
     <div class="topics-grid">
-      <div class="topic-card">
+      <a href="#lesson-01" class="topic-card">
         <span class="topic-icon">&#x1f4dc;</span>
         <h3>Smart Contracts</h3>
         <p>Why DeFi replaces banks with code and how smart contracts power the ecosystem.</p>
-      </div>
-      <div class="topic-card">
+      </a>
+      <a href="#lesson-02" class="topic-card">
         <span class="topic-icon">&#x1f4b2;</span>
         <h3>Stablecoins</h3>
         <p>The backbone of DeFi: how stablecoins maintain their peg and why they matter.</p>
-      </div>
-      <div class="topic-card">
+      </a>
+      <a href="#lesson-03" class="topic-card">
         <span class="topic-icon">&#x1f504;</span>
         <h3>AMMs &amp; Liquidity</h3>
         <p>How automated market makers enable permissionless trading and LP fees.</p>
-      </div>
-      <div class="topic-card">
+      </a>
+      <a href="#lesson-04" class="topic-card">
         <span class="topic-icon">&#x1f3e6;</span>
         <h3>Lending &amp; Borrowing</h3>
         <p>On-chain lending protocols, collateral mechanics, and interest rate models.</p>
-      </div>
-      <div class="topic-card">
+      </a>
+      <a href="#lesson-05" class="topic-card">
         <span class="topic-icon">&#x1f4c8;</span>
         <h3>Perpetual DEXs</h3>
         <p>Decentralised perpetual futures trading and its advantages over centralised alternatives.</p>
-      </div>
-      <div class="topic-card">
+      </a>
+      <a href="#lesson-06" class="topic-card">
         <span class="topic-icon">&#x1f33e;</span>
         <h3>Yield Farming</h3>
         <p>Liquidity mining, staking incentives, and strategies for compounding returns.</p>
-      </div>
-      <div class="topic-card">
+      </a>
+      <a href="#lesson-08" class="topic-card">
         <span class="topic-icon">&#x1f310;</span>
         <h3>Multi-Chain Strategies</h3>
         <p>Deploy capital across multiple chains and bridge ecosystems to maximise yield.</p>
-      </div>
-      <div class="topic-card">
+      </a>
+      <a href="#lesson-09" class="topic-card">
         <span class="topic-icon">&#x1f6e1;</span>
         <h3>Security &amp; Safety</h3>
         <p>Protect yourself from scams, phishing, and smart-contract risks with practical habits.</p>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -542,13 +582,14 @@
 <section id="lessons" class="lessons-section">
   <div class="container">
     <div class="section-eyebrow">Curriculum</div>
-    <h2 class="section-title">Download every lesson.</h2>
-    <p class="section-desc">Work through the course in order or jump to any topic. Each lesson is a self-contained guide you can read offline or watch at your own pace.</p>
+    <h2 class="section-title">Explore every lesson.</h2>
+    <p class="section-desc">Read each lesson online, download the PDF, or watch the video. Work through the course in order or jump to any topic at your own pace.</p>
 
     <div class="lessons-list">
 
       <!-- Lesson 1 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-01">
+        <a href="lessons/01-defi-essentials.html" class="lesson-card-link" aria-label="Read Lesson 01"></a>
         <div class="lesson-num">01</div>
         <div class="lesson-info">
           <h3>The Essentials of DeFi: Smart Contracts, Not Banks</h3>
@@ -558,13 +599,14 @@
         <div class="lesson-actions">
           <a href="assets/lessons/The-Essentials-of-DeFi-Smart-Contracts-Not-Banks (2).pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
         </div>
       </div>
 
       <!-- Lesson 2 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-02">
+        <a href="lessons/02-stablecoins.html" class="lesson-card-link" aria-label="Read Lesson 02"></a>
         <div class="lesson-num">02</div>
         <div class="lesson-info">
           <h3>Why Stablecoins Matter in DeFi</h3>
@@ -574,7 +616,7 @@
         <div class="lesson-actions">
           <a href="assets/lessons/Why-Stablecoins-Matter-in-DeFi (1).pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
           <a href="assets/lessons/DeFi__Stablecoins_&_Yield.mp4" class="btn-dl btn-video" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
@@ -584,7 +626,8 @@
       </div>
 
       <!-- Lesson 3 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-03">
+        <a href="lessons/03-amm.html" class="lesson-card-link" aria-label="Read Lesson 03"></a>
         <div class="lesson-num">03</div>
         <div class="lesson-info">
           <h3>Automated Market Makers: The Liquid Heart of DeFi</h3>
@@ -594,13 +637,14 @@
         <div class="lesson-actions">
           <a href="assets/lessons/Automated-Market-Makers-The-Liquid-Heart-of-DeFi.pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
         </div>
       </div>
 
       <!-- Lesson 4 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-04">
+        <a href="lessons/04-lending.html" class="lesson-card-link" aria-label="Read Lesson 04"></a>
         <div class="lesson-num">04</div>
         <div class="lesson-info">
           <h3>Lending Protocols in DeFi: A Primer</h3>
@@ -610,7 +654,7 @@
         <div class="lesson-actions">
           <a href="assets/lessons/Lending-Protocols-in-DeFi-A-Primer (3).pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
           <a href="assets/lessons/Lending_Protocols_in_DeFi.mp4" class="btn-dl btn-video" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
@@ -620,7 +664,8 @@
       </div>
 
       <!-- Lesson 5 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-05">
+        <a href="lessons/05-perpetual-dex.html" class="lesson-card-link" aria-label="Read Lesson 05"></a>
         <div class="lesson-num">05</div>
         <div class="lesson-info">
           <h3>Understanding Perpetual DEXs: The Decentralised Trading Revolution</h3>
@@ -630,13 +675,14 @@
         <div class="lesson-actions">
           <a href="assets/lessons/Understanding-Perpetual-DEXs-The-Decentralised-Trading-Revolution.pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
         </div>
       </div>
 
       <!-- Lesson 6 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-06">
+        <a href="lessons/06-defi-farming.html" class="lesson-card-link" aria-label="Read Lesson 06"></a>
         <div class="lesson-num">06</div>
         <div class="lesson-info">
           <h3>DeFi Farming: Boost Your Crypto Yields</h3>
@@ -646,13 +692,14 @@
         <div class="lesson-actions">
           <a href="assets/lessons/DeFi-Farming-Boost-Your-Crypto-Yields.pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
         </div>
       </div>
 
       <!-- Lesson 7 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-07">
+        <a href="lessons/07-core-assets.html" class="lesson-card-link" aria-label="Read Lesson 07"></a>
         <div class="lesson-num">07</div>
         <div class="lesson-info">
           <h3>Unlocking DeFi Yield: Core Assets &amp; Strategy</h3>
@@ -662,7 +709,7 @@
         <div class="lesson-actions">
           <a href="assets/lessons/Unlocking-DeFi-Yield-Core-Assets-Strategy (2).pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
           <a href="assets/lessons/Unlocking_DeFi_Yield.mp4" class="btn-dl btn-video" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
@@ -672,7 +719,8 @@
       </div>
 
       <!-- Lesson 8 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-08">
+        <a href="lessons/08-multi-chain.html" class="lesson-card-link" aria-label="Read Lesson 08"></a>
         <div class="lesson-num">08</div>
         <div class="lesson-info">
           <h3>Maximising Yield Through Multi-Chain DeFi Strategies</h3>
@@ -682,7 +730,7 @@
         <div class="lesson-actions">
           <a href="assets/lessons/Maximising-Yield-Through-Multi-Chain-DeFi-Strategies (2).pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
           <a href="assets/lessons/Multi-Chain_DeFi_Strategies.mp4" class="btn-dl btn-video" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
@@ -692,7 +740,8 @@
       </div>
 
       <!-- Lesson 9 -->
-      <div class="lesson-card">
+      <div class="lesson-card" id="lesson-09">
+        <a href="lessons/09-staying-safe.html" class="lesson-card-link" aria-label="Read Lesson 09"></a>
         <div class="lesson-num">09</div>
         <div class="lesson-info">
           <h3>Staying Safe in DeFi: Link Security &amp; Yield Strategies</h3>
@@ -702,7 +751,7 @@
         <div class="lesson-actions">
           <a href="assets/lessons/Staying-Safe-in-DeFi-Link-Security-and-Yield-Strategies.pdf" class="btn-dl btn-pdf" download>
             <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-            PDF Guide
+            PDF
           </a>
         </div>
       </div>
@@ -715,23 +764,23 @@
 <section id="audience">
   <div class="container">
     <div class="section-eyebrow">Who this is for</div>
-    <h2 class="section-title">Designed for every level.</h2>
-    <p class="section-desc">Whether you're new to crypto or already active on-chain, this course meets you where you are.</p>
+    <h2 class="section-title">Stop guessing. Start earning.</h2>
+    <p class="section-desc">Whether you're done losing money on altcoins, looking for better yields than your bank, or running a business &mdash; DeFi has a place for you.</p>
     <div class="audience-grid">
       <div class="audience-card">
-        <span class="aud-icon">&#x1f331;</span>
-        <h3>Crypto-Curious Beginners</h3>
-        <p>You've heard of DeFi but haven't explored it. This course walks you through every concept from scratch &mdash; no prior experience required.</p>
+        <span class="aud-icon">&#x1f4b8;</span>
+        <h3>Crypto Holders Tired of Losses</h3>
+        <p>You've been burned by altcoins and meme tokens. Learn how to generate stable, predictable cash flow from your crypto through lending, LPing, and staking &mdash; instead of gambling on the next pump.</p>
       </div>
       <div class="audience-card">
-        <span class="aud-icon">&#x1f4ca;</span>
-        <h3>Active Traders &amp; Holders</h3>
-        <p>You hold crypto and want to put it to work. Learn yield farming, lending, and multi-chain strategies to generate returns on your assets.</p>
+        <span class="aud-icon">&#x1f4c8;</span>
+        <h3>Traditional Investors</h3>
+        <p>Banks offer 1&ndash;2% on your savings. Bonds barely beat inflation. DeFi stablecoin strategies deliver 5&ndash;15% yields without crypto price exposure &mdash; a compelling alternative for anyone used to traditional markets.</p>
       </div>
       <div class="audience-card">
-        <span class="aud-icon">&#x1f3db;</span>
-        <h3>Finance Professionals</h3>
-        <p>You understand TradFi and want to see how decentralised protocols replicate &mdash; and improve on &mdash; traditional financial services.</p>
+        <span class="aud-icon">&#x1f3e2;</span>
+        <h3>Businesses &amp; Treasuries</h3>
+        <p>Your stablecoins sit idle between operations. Put your business treasury to work in audited lending protocols and earn yield on capital that would otherwise just wait &mdash; while keeping it liquid and accessible.</p>
       </div>
     </div>
   </div>
@@ -742,11 +791,16 @@
   <div class="container">
     <div class="cta-box">
       <h2>Start learning today.</h2>
-      <p>All nine lessons are completely free. Download the PDFs, watch the videos, and build real DeFi knowledge at your own pace.</p>
-      <a href="#lessons" class="btn-primary">
-        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z"/><path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z"/></svg>
-        Browse Lessons
-      </a>
+      <p>All nine lessons are completely free. Read online, download PDFs, watch videos, and join our community to discuss strategies.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="#lessons" class="btn-primary">
+          Browse Lessons
+        </a>
+        <a href="https://t.me/defistable" target="_blank" rel="noopener" class="btn-primary" style="background:#26A5E4;border:1px solid #26A5E4;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+          Join Telegram
+        </a>
+      </div>
     </div>
   </div>
 </section>
